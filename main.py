@@ -1,8 +1,6 @@
 from fastapi import FastAPI
-from typing import Dict
-from flask import Flask, jsonify
 from fastapi import HTTPException
-from typing import List
+
 
 
 # Importo las librerias
@@ -10,13 +8,13 @@ import pandas as pd
 import numpy as np
 
 # Leer el archivo CSV 'ETL-SteamGame.csv' y convertirlo en un DataFrame
-df_steam_games = pd.read_parquet(r'C:\Users\melan\Desktop\DATA SCIENCE- Henry\PI\deployment\data_deployment\ETL-Steam_game_cleaned.parquet')
+df_steam_games = pd.read_parquet(r'data_deployment\ETL-Steam_game_cleaned.parquet')
 
 # Leer el archivo CSV 'ETL-UserItems.csv' y convertirlo en un DataFrame
-df_user_items = pd.read_parquet(r'C:\Users\melan\Desktop\DATA SCIENCE- Henry\PI\deployment\data_deployment\ETL-User_items_cleaned.parquet')
+df_user_items = pd.read_parquet(r'data_deployment\ETL-User_items_cleaned.parquet')
 
 # Leer el archivo CSV 'ETL-UserReviews.csv' y convertirlo en un DataFrame
-df_user_reviews = pd.read_parquet(r'C:\Users\melan\Desktop\DATA SCIENCE- Henry\PI\deployment\data_deployment\ETL-User_reviews_cleaned.parquet')
+df_user_reviews = pd.read_parquet(r'data_deployment\ETL-User_reviews_cleaned.parquet')
 
 df_merged1 = pd.merge(df_steam_games, df_user_reviews, on='item_id', how='inner')
 df_merged2 = pd.merge(df_steam_games, df_user_items, on='item_id', how='inner')
