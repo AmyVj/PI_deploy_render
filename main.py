@@ -57,7 +57,7 @@ def developer(desarrollador: str):
 
 #API 2
 
-@app.get('/userdata/<user_id>')
+@app.get('/userdata/{User_id}')
 def userdata(User_id: str):
     try:
         # Filtro el DataFrame por el User_id proporcionado
@@ -90,7 +90,7 @@ import pandas as pd
 
 # Supongamos que ya tienes cargado tu DataFrame df_merged2 con las columnas necesarias
 
-@app.get("/UserForGenre")
+@app.get("/UserForGenre/{genero}")
 def UserForGenre(genero: str):
     # Filtrar los datos para el género dado
     df_filtered = df_merged2[df_merged2['genres'] == genero]
@@ -114,7 +114,7 @@ def UserForGenre(genero: str):
 
 #API 4
 
-@app.get("/best_developer_year")
+@app.get("/best_developer_year/{año}")
 def best_developer_year(año: int):
     # Filtro los datos para el año dado
     df_filtered = df_merged1[df_merged1['Año'] == año]
