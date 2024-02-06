@@ -19,6 +19,9 @@ df_user_reviews = pd.read_parquet('data_deployment/ETL-User_reviews_cleaned.parq
 df_merged1 = pd.merge(df_steam_games, df_user_reviews, on='item_id', how='inner')
 df_merged2 = pd.merge(df_steam_games, df_user_items, on='item_id', how='inner')
 
+# Eliminar los DataFrames originales para liberar memoria
+del df_steam_games, df_user_items, df_user_reviews
+
 app = FastAPI()
 
 #API 1
