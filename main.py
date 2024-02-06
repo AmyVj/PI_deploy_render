@@ -134,7 +134,7 @@ def best_developer_year(año: int):
 
 #API 5 
 
-@app.get("/developer_reviews_analysis")
+@app.get("/developer_reviews_analysis/{desarrollador}")
 def developer_reviews_analysis(desarrollador: str):
     # Filtro los datos para el desarrollador dado
     df_filtered = df_merged1[df_merged1['developer'] == desarrollador]
