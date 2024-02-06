@@ -6,7 +6,7 @@ import logging
 logging.basicConfig(level=logging.ERROR)
 
 # Leer solo las columnas necesarias del archivo parquet 'ETL-Steam_game_cleaned.parquet'
-columns_steam_games = ['item_id', 'developer', 'Año', 'price', 'genres']
+columns_steam_games = ['item_id', 'developer', 'Año', 'price', 'genres','playtime_forever']
 df_steam_games = pd.read_parquet('data_deployment/ETL-Steam_game_cleaned.parquet', columns=columns_steam_games)
 
 # Leer solo las columnas necesarias del archivo parquet 'ETL-UserItems.csv'
