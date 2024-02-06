@@ -6,7 +6,7 @@ import logging
 logging.basicConfig(level=logging.ERROR)
 
 # Leer solo las columnas necesarias del archivo parquet 'ETL-Steam_game_cleaned.parquet'
-columns_steam_games = ['item_id', 'developer', 'Año', 'price', 'genres','playtime_forever']
+columns_steam_games = ['item_id', 'developer', 'Año', 'price', 'genres']
 df_steam_games = pd.read_parquet('data_deployment/ETL-Steam_game_cleaned.parquet', columns=columns_steam_games)
 
 # Leer solo las columnas necesarias del archivo parquet 'ETL-UserItems.csv'
@@ -14,7 +14,7 @@ columns_user_items = ['item_id', 'user_id']
 df_user_items = pd.read_parquet('data_deployment/ETL-User_items_cleaned.parquet', columns=columns_user_items)
 
 # Leer solo las columnas necesarias del archivo parquet 'ETL-UserReviews.csv'
-columns_user_reviews = ['item_id', 'recommend', 'sentiment_analysis']
+columns_user_reviews = ['item_id', 'recommend', 'sentiment_analysis','playtime_forever']
 df_user_reviews = pd.read_parquet('data_deployment/ETL-User_reviews_cleaned.parquet', columns=columns_user_reviews)
 
 # Merge de los DataFrames
