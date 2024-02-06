@@ -61,7 +61,7 @@ def developer(desarrollador: str):
 
 #API 2
 
-@app.get('/userdata/{User_id}')
+@app.get('/userdata/userid')
 def userdata(User_id: str):
     try:
         # Filtro el DataFrame por el User_id proporcionado
