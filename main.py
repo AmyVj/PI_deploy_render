@@ -85,8 +85,7 @@ def userdata(User_id: str):
 
 #API 3 
 
-from fastapi import FastAPI
-import pandas as pd
+
 
 # Supongamos que ya tienes cargado tu DataFrame df_merged2 con las columnas necesarias
 
@@ -136,15 +135,19 @@ def best_developer_year(año: int):
 
 @app.get("/developer_reviews_analysis/{desarrollador}")
 def developer_reviews_analysis(desarrollador: str):
-    # Filtro los datos para el desarrollador dado
-    df_filtered = df_merged1[df_merged1['developer'] == desarrollador]
+    try:
+        # Filtro los datos para el desarrollador dado
+        df_filtered = df_merged1[df_merged1['developer'] == desarrollador]
     
-    # Cuento la cantidad de registros de reseñas positivas y negativas
-    positive_reviews = df_filtered[df_filtered['sentiment_analysis'] > 0].shape[0]
-    negative_reviews = df_filtered[df_filtered['sentiment_analysis'] < 0].shape[0]
+        # Cuento la cantidad de registros de reseñas positivas y negativas
+        positive_reviews = df_filtered[df_filtered['sentiment_analysis'] > 0].shape[0]
+        negative_reviews = df_filtered[df_filtered['sentiment_analysis'] < 0].shape[0]
     
-    # Creo el diccionario de retorno con el formato esperado
-    retorno = {desarrollador: {'Negative': negative_reviews, 'Positive': positive_reviews}}
+        # Creo el diccionario de retorno con el formato esperado
+        retorno = {desarrollador: {'Negative': negative_reviews, 'Positive': positive_reviews}}
     
-    return retorno
+        return retorno
+    except Exception as e:
+        logging.error(str(e))
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
