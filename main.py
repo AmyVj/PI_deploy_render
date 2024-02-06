@@ -10,7 +10,7 @@ columns_user_items = ['item_id', 'user_id']
 df_user_items = pd.read_parquet('data_deployment/ETL-User_items_cleaned.parquet', columns=columns_user_items)
 
 # Leer solo las columnas necesarias del archivo parquet 'ETL-UserReviews.csv'
-columns_user_reviews = ['item_id', 'recommend']
+columns_user_reviews = ['item_id', 'recommend', 'sentiment_analysis']
 df_user_reviews = pd.read_parquet('data_deployment/ETL-User_reviews_cleaned.parquet', columns=columns_user_reviews)
 
 # Merge de los DataFrames
