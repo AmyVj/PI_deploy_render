@@ -1,28 +1,26 @@
-from fastapi import FastAPI
-from fastapi import HTTPException
+from fastapi import FastAPI, HTTPException
+import pandas as pd
 
+# Leer solo las columnas necesarias del archivo parquet 'ETL-Steam_game_cleaned.parquet'
+columns_steam_games = ['item_id', 'developer', 'Año', 'price']
+df_steam_games = pd.read_parquet('data_deployment/ETL-Steam_game_cleaned.parquet', columns=columns_steam_games)
 
+# Leer solo las columnas necesarias del archivo parquet 'ETL-UserItems.csv'
+columns_user_items = ['item_id', 'user_id']
+df_user_items = pd.read_parquet('data_deployment/ETL-User_items_cleaned.parquet', columns=columns_user_items)
 
-# Importo las librerias
-import pandas as pd 
-import numpy as np
+# Leer solo las columnas necesarias del archivo parquet 'ETL-UserReviews.csv'
+columns_user_reviews = ['item_id', 'recommend']
+df_user_reviews = pd.read_parquet('data_deployment/ETL-User_reviews_cleaned.parquet', columns=columns_user_reviews)
 
-# Leer el archivo CSV 'ETL-SteamGame.csv' y convertirlo en un DataFrame
-df_steam_games = pd.read_parquet('data_deployment/ETL-Steam_game_cleaned.parquet')
-
-# Leer el archivo CSV 'ETL-UserItems.csv' y convertirlo en un DataFrame
-df_user_items = pd.read_parquet('data_deployment/ETL-User_items_cleaned.parquet')
-
-# Leer el archivo CSV 'ETL-UserReviews.csv' y convertirlo en un DataFrame
-df_user_reviews = pd.read_parquet('data_deployment/ETL-User_reviews_cleaned.parquet')
-
+# Merge de los DataFrames
 df_merged1 = pd.merge(df_steam_games, df_user_reviews, on='item_id', how='inner')
 df_merged2 = pd.merge(df_steam_games, df_user_items, on='item_id', how='inner')
 
-# Eliminar los DataFrames originales para liberar memoria
-del df_steam_games, df_user_items, df_user_reviews
-
 app = FastAPI()
+
+# Definición de tus APIs...
+
 
 #API 1
 
