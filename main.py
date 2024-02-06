@@ -1,8 +1,12 @@
 from fastapi import FastAPI, HTTPException
 import pandas as pd
+import logging
+
+# Configuración básica del registro de errores
+logging.basicConfig(level=logging.ERROR)
 
 # Leer solo las columnas necesarias del archivo parquet 'ETL-Steam_game_cleaned.parquet'
-columns_steam_games = ['item_id', 'developer', 'Año', 'price']
+columns_steam_games = ['item_id', 'developer', 'Año', 'price', 'genres','sentiment_analysis']
 df_steam_games = pd.read_parquet('data_deployment/ETL-Steam_game_cleaned.parquet', columns=columns_steam_games)
 
 # Leer solo las columnas necesarias del archivo parquet 'ETL-UserItems.csv'
@@ -133,7 +137,7 @@ def best_developer_year(año: int):
 
 #API 5 
 
-@app.get("/developer_reviews_analysis/{desarrollador}")
+@app.get("/developer_reviews_analysis/{desarrollador}", summary="Obtiene el análisis de reseñas para un desarrollador específico.")
 def developer_reviews_analysis(desarrollador: str):
     try:
         # Filtro los datos para el desarrollador dado
@@ -148,6 +152,6 @@ def developer_reviews_analysis(desarrollador: str):
     
         return retorno
     except Exception as e:
-        logging.error(str(e))
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        logging.error(f"Error en API 5: {str(e)}")
+        raise HTTPException(status_code=500, detail="Error interno del servidor.")
 
