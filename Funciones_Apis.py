@@ -6,12 +6,12 @@ import pandas as pd
 import operator
 
 # Datos para las consultas
-df_reviews = pd.read_parquet(r'C:\Users\melan\Desktop\DATA SCIENCE- Henry\PI1_MLOps_deployer-render\data_render\df_reviews.parquet')
-df_gastos_items = pd.read_parquet(r'C:\Users\melan\Desktop\DATA SCIENCE- Henry\PI1_MLOps_deployer-render\data_render\df_gastos_items.parquet')
-df_genre_ranking = pd.read_parquet(r'C:\Users\melan\Desktop\DATA SCIENCE- Henry\PI1_MLOps_deployer-render\data_render\df_genre_ranking.parquet')
-df_playtime_forever = pd.read_parquet(r'C:\Users\melan\Desktop\DATA SCIENCE- Henry\PI1_MLOps_deployer-render\data_render\df_playtime_forever.parquet')
-df_items_developer = pd.read_parquet(r'C:\Users\melan\Desktop\DATA SCIENCE- Henry\PI1_MLOps_deployer-render\data_render\df_items_developer.parquet')
-item_sim_df = pd.read_parquet(r'C:\Users\melan\Desktop\DATA SCIENCE- Henry\PI1_MLOps_deployer-render\data_render\item_sim_df.parquet')
+df_reviews = pd.read_parquet('data_render/df_reviews.parquet')
+df_gastos_items = pd.read_parquet('data_render/df_gastos_items.parquet')
+df_genre_ranking = pd.read_parquet('data_render/df_genre_ranking.parquet')
+df_playtime_forever = pd.read_parquet('data_render/df_playtime_forever.parquet')
+df_items_developer = pd.read_parquet('data_render/df_items_developer.parquet')
+item_sim_df = pd.read_parquet('data_render/item_sim_df.parquet')
 
 
 def presentacion():
